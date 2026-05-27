@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }}{% if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif %}{% if current_page != 1 %} &ndash; Page {{ current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  {%- if settings.brand_logo != blank -%}
+    <link rel="preload" as="image" href="{{ settings.brand_logo | image_url: width: 440 }}">
+  {%- else -%}
+    <link rel="preload" as="image" href="{{ 'signageworks-logo-reversed-for-dark-bg.png' | asset_url }}">
+  {%- endif -%}
+
+  {%- if settings.inky_mascot != blank -%}
+    <link rel="preload" as="image" href="{{ settings.inky_mascot | image_url: width: 200 }}">
+  {%- else -%}
+    <link rel="preload" as="image" href="{{ 'inky-mascot.png' | asset_url }}">
+  {%- endif -%}
+
+  {{ 'signageworks-base.css' | asset_url | stylesheet_tag }}
+
+  {%- comment -%} Expose theme settings to JS as window.SignageWorks {%- endcomment -%}
+  <script>
+    window.SignageWorks = {
+      applyEndpoint: {{ settings.apply_endpoint | default: 'https://api.signageworks.com/api/application' | json }},
+      chatEndpoint: {{ settings.chat_api_url | default: '' | json }},
+      configuratorUrl: {{ settings.configurator_url | default: 'SignageWorks-Configurator-Prototype.html' | json }}
+    };
+  </script>
+
+  {{ content_for_header }}
+</head>
+<body>
+
+  {% sections 'header-group' %}
+
+  <main id="MainContent" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% sections 'footer-group' %}
+
+  {%- comment -%} Global modals & chat — rendered at body level so they overlay everything {%- endcomment -%}
+  {% section 'apply-modal' %}
+  {% section 'login-modal' %}
+  {% section 'locked-modal' %}
+  {% section 'chat-widget' %}
+
+  <script src="{{ 'signageworks-main.js' | asset_url }}" defer></script>
+</body>
+</html>

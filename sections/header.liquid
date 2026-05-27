@@ -1,0 +1,116 @@
+<a id="top"></a>
+
+{%- if section.settings.show_announcement_bar -%}
+  {%- render 'announcement-bar', section: section -%}
+{%- endif -%}
+
+<header class="main-header">
+  <div class="brand-block">
+    {%- render 'brand-logo', link: true -%}
+  </div>
+  <nav class="main-nav">
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'nav_link' -%}
+        <a href="{{ block.settings.link | default: '#' }}"{% if block.settings.has_dropdown %} class="nav-dropdown"{% endif %} {{ block.shopify_attributes }}>{{ block.settings.label }}</a>
+      {%- endif -%}
+    {%- endfor -%}
+  </nav>
+  <div class="header-cta">
+    <button class="btn-outline" id="login-btn-top">{{ section.settings.login_label | default: 'Log In' }}</button>
+    <button class="btn-magenta" id="apply-btn-top">{{ section.settings.apply_label | default: 'Open Account' }}</button>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "tag": "section",
+  "class": "shopify-section-header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Announcement Bar"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_announcement_bar",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "announce_msg_1",
+      "label": "Message 1",
+      "default": "INSTANT ONLINE PROOFS"
+    },
+    {
+      "type": "text",
+      "id": "announce_msg_2",
+      "label": "Message 2",
+      "default": "FREE SHIPPING"
+    },
+    {
+      "type": "text",
+      "id": "announce_msg_3",
+      "label": "Message 3",
+      "default": "FAST TURNAROUND"
+    },
+    {
+      "type": "header",
+      "content": "Header Buttons"
+    },
+    {
+      "type": "text",
+      "id": "login_label",
+      "label": "Log In button label",
+      "default": "Log In"
+    },
+    {
+      "type": "text",
+      "id": "apply_label",
+      "label": "Open Account button label",
+      "default": "Open Account"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "nav_link",
+      "name": "Nav link",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Shop by Category"
+        },
+        {
+          "type": "text",
+          "id": "link",
+          "label": "Link (URL or anchor)",
+          "default": "#categories"
+        },
+        {
+          "type": "checkbox",
+          "id": "has_dropdown",
+          "label": "Show dropdown caret",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "default": {
+    "settings": {},
+    "blocks": [
+      { "type": "nav_link", "settings": { "label": "Shop by Category", "link": "#categories", "has_dropdown": true } },
+      { "type": "nav_link", "settings": { "label": "How It Works", "link": "#how-it-works" } },
+      { "type": "nav_link", "settings": { "label": "Popular Signs", "link": "#popular" } },
+      { "type": "nav_link", "settings": { "label": "Property Showcase", "link": "#showcase" } }
+    ]
+  },
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,53 @@
+{%- comment -%}
+  Ask Inky chat launcher + panel. Keyword-driven mock AI lives in
+  signageworks-main.js. To connect to a real LLM backend, set the
+  "Chat API URL" theme setting — main.js will POST { message } to it
+  and expect { reply: "..." } in the response.
+{%- endcomment -%}
+
+<button class="chat-launcher" id="chat-launcher" aria-label="Open chat with Inky">
+  <span class="chat-launcher-label"><span class="chat-dot"></span>{{ section.settings.launcher_label | default: 'Ask Inky' }}</span>
+  <span class="chat-launcher-circle">
+    {%- render 'inky-mascot' -%}
+  </span>
+</button>
+
+<div class="chat-panel hidden" id="chat-panel" role="dialog" aria-label="Chat with Inky">
+  <div class="chat-header">
+    <div class="chat-avatar">
+      <div class="chat-avatar-inner">🐙</div>
+    </div>
+    <div class="chat-title">
+      <div class="name">{{ section.settings.title | default: 'Ask Inky' }}</div>
+      <div class="sub">{{ section.settings.subtitle | default: 'Apartment signage · Online 24/7' }}</div>
+    </div>
+    <button class="chat-close" id="chat-close" aria-label="Close chat">×</button>
+  </div>
+  <div class="chat-body" id="chat-body"></div>
+  <div class="chat-input-row">
+    <input type="text" class="chat-input" id="chat-input" placeholder="{{ section.settings.input_placeholder | default: 'Ask anything about apartment signs…' }}" autocomplete="off">
+    <button class="chat-send" id="chat-send" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M5 12h14M13 6l6 6-6 6"/>
+      </svg>
+    </button>
+  </div>
+  <div class="chat-foot">{{ section.settings.footnote | default: '<strong>Apartment Direct</strong> · Communities Only' }}</div>
+</div>
+
+{% schema %}
+{
+  "name": "Chat Widget (Ask Inky)",
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "The chat brain (keyword responses + locked SignageWorks vocabulary) lives in /assets/signageworks-main.js — edit there to update reply content. To connect a real LLM backend, set the 'Chat API URL' in Theme settings."
+    },
+    { "type": "text", "id": "launcher_label", "label": "Launcher pill label", "default": "Ask Inky" },
+    { "type": "text", "id": "title", "label": "Panel title", "default": "Ask Inky" },
+    { "type": "text", "id": "subtitle", "label": "Panel subtitle", "default": "Apartment signage · Online 24/7" },
+    { "type": "text", "id": "input_placeholder", "label": "Input placeholder", "default": "Ask anything about apartment signs…" },
+    { "type": "richtext", "id": "footnote", "label": "Footnote", "default": "<p><strong>Apartment Direct</strong> · Communities Only</p>" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,84 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "SignageWorks",
+    "theme_author": "SignageWorks",
+    "theme_version": "1.0.0",
+    "theme_documentation_url": "https://signageworks.com",
+    "theme_support_url": "mailto:hello@signageworks.com"
+  },
+  {
+    "name": "Brand Assets",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "brand_logo",
+        "label": "Brand logo (reversed for dark bg)",
+        "info": "Used in header + footer. Falls back to /assets/signageworks-logo-reversed-for-dark-bg.png."
+      },
+      {
+        "type": "image_picker",
+        "id": "inky_mascot",
+        "label": "Inky mascot avatar",
+        "info": "Round PNG used in the Ask Inky chat launcher. Falls back to /assets/inky-mascot.png."
+      },
+      {
+        "type": "video",
+        "id": "hero_video",
+        "label": "Hero background video",
+        "info": "Looping background video on the hero. Falls back to /assets/octopus-hero.mp4."
+      }
+    ]
+  },
+  {
+    "name": "Brand Colors",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Note: the live CSS variables (--cyan, --magenta, etc.) are locked at brand values inside signageworks-base.css. These pickers are exposed for forward-compat / future CTA-color overrides only."
+      },
+      {
+        "type": "color",
+        "id": "primary_cta_color",
+        "label": "Primary CTA color",
+        "default": "#EC008C"
+      },
+      {
+        "type": "color",
+        "id": "secondary_cta_color",
+        "label": "Secondary CTA color",
+        "default": "#00AEEF"
+      },
+      {
+        "type": "color",
+        "id": "accent_color",
+        "label": "Accent / yellow color",
+        "default": "#FFD700"
+      }
+    ]
+  },
+  {
+    "name": "Endpoints",
+    "settings": [
+      {
+        "type": "url",
+        "id": "apply_endpoint",
+        "label": "Apply form endpoint",
+        "info": "Backend URL the apply form POSTs to. Expects JSON body { property_name, applicant_name, role, email, phone, unit_count, source }.",
+        "default": "https://api.signageworks.com/api/application"
+      },
+      {
+        "type": "url",
+        "id": "chat_api_url",
+        "label": "Chat API URL (optional)",
+        "info": "If set, Ask Inky will POST { message } here and expect { reply } back. Leave blank to use the built-in keyword-driven mock bot."
+      },
+      {
+        "type": "url",
+        "id": "configurator_url",
+        "label": "Configurator URL (post-login redirect)",
+        "default": "https://signageworks.com/configurator"
+      }
+    ]
+  }
+]

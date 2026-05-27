@@ -1,0 +1,197 @@
+{%- comment -%}
+  ============================================================
+  CONFIGURATOR APP SECTION
+  ============================================================
+  Mounts the SignageWorks configurator HTML scaffolding inside
+  whatever Liquid template includes it (typically
+  templates/page.configurator.liquid). The actual interactivity
+  lives in assets/configurator.js — this section only renders
+  the DOM containers the JS app populates at runtime.
+
+  Catalog data (sign types, materials, fonts, etc.) is emitted
+  separately by snippets/configurator-catalog.liquid below.
+
+  This section is intentionally minimal on Liquid logic — it
+  inherits the global theme header/footer from theme.liquid.
+  ============================================================
+{%- endcomment -%}
+
+{{ 'configurator.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} Inline catalog JSON for the JS app to read on init {%- endcomment -%}
+{% render 'configurator-catalog' %}
+
+<div class="configurator-page">
+
+  <header class="brand-header">
+    <div class="brand-mark">
+      <a href="{{ routes.root_url }}" class="cfg-brand-logo-link" aria-label="SignageWorks — back to home" title="Back to home">
+        <img class="cfg-brand-logo-img"
+             src="{{ 'signageworks-logo-reversed-for-dark-bg.png' | asset_url }}"
+             alt="SignageWorks — World-Class Apartment Signage">
+      </a>
+    </div>
+    <div class="brand-cta">
+      <div class="badge-row">
+        <span class="badge">Instant Proofs</span>
+        <span class="badge magenta">Free Shipping</span>
+        <span class="badge yellow">Fast Turnaround</span>
+      </div>
+      <button class="header-cart-btn" id="header-cart-btn" aria-label="View cart" title="View cart">
+        🛒
+        <span class="cart-badge-num" id="cart-badge-num">0</span>
+      </button>
+    </div>
+  </header>
+
+  <nav class="step-indicator" id="step-indicator"></nav>
+
+  <main class="config-main">
+    <section class="config-panel">
+      <div class="step-header">
+        <div class="step-eyebrow" id="step-eyebrow">Step 1 of 9</div>
+        <div class="step-title" id="step-title">Choose Your Sign</div>
+        <div class="step-sub" id="step-sub">Pick the apartment sign you need.</div>
+      </div>
+      <div class="step-body" id="step-body"></div>
+      <div class="step-nav">
+        <button class="btn btn-secondary" id="prev-btn">&larr; Back</button>
+        <button class="btn btn-primary" id="next-btn">Continue &rarr;</button>
+      </div>
+    </section>
+
+    <section class="config-preview">
+      <div class="preview-header">
+        <div class="preview-title">Live Sign Preview</div>
+        <div class="preview-spec" id="preview-spec">Make your selections to see your sign &rarr;</div>
+      </div>
+      <div class="helper-bar" id="helper-bar" style="display:none">
+        <span class="icon">✨</span>
+        <span id="helper-text">Your preview updates in real time as you make changes.</span>
+      </div>
+      <div class="preview-frame" id="preview-frame">
+        <div class="preview-empty" id="preview-empty">
+          <img class="empty-inky" src="{{ 'inky-mascot.png' | asset_url }}" alt="Inky">
+          <div>Your sign preview will appear here.</div>
+          <div style="margin-top: 8px; font-size: 12px;">Choose a sign type to get started.</div>
+        </div>
+        <div id="preview-svg-wrap" style="display:none"></div>
+      </div>
+      <div class="price-card">
+        <div class="price-row"><span class="label">Unit Price</span><span class="val" id="unit-price">—</span></div>
+        <div class="price-row"><span class="label">Quantity</span><span class="val" id="qty-line">—</span></div>
+        <div class="price-row"><span class="label">Free Shipping</span><span class="val" style="color: var(--cyan)">Included</span></div>
+        <div class="price-row"><span class="label">Instant Proofs</span><span class="val" style="color: var(--cyan)">Included</span></div>
+        <div class="price-row total"><span class="label">Subtotal</span><span class="val" id="subtotal">—</span></div>
+        <button class="btn btn-cta" id="add-to-cart-btn" disabled>Add to Cart</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer-bar">
+    <div><span class="magenta-strip">Raising Standards &amp; Delivering Quality, FAST</span></div>
+    <div><span class="accent-line">www.SignageWorks.com</span> &nbsp;|&nbsp; <span class="accent-line">hello@signageworks.com</span></div>
+  </footer>
+
+  {%- comment -%} =========== Add-to-cart confirmation modal =========== {%- endcomment -%}
+  <div class="modal-overlay hidden" id="modal-overlay">
+    <div class="modal">
+      <div class="modal-emoji">🛒</div>
+      <h2>Added to Cart!</h2>
+      <p>Your order has been added to your cart. What would you like to do next?</p>
+      <div class="modal-buttons">
+        <button class="btn btn-cta-modal" id="modal-checkout">Checkout Now</button>
+        <button class="btn btn-secondary-modal" id="modal-customize-another">Customize Another Like This</button>
+        <button class="btn btn-secondary-modal" id="modal-continue-shopping">Continue Shopping</button>
+      </div>
+      <div class="modal-divider"></div>
+      <p style="font-size: 11px; color: var(--muted);">On checkout, payment runs through Shopify Payments. On payment success, your order auto-creates a new request on Monday.com.</p>
+    </div>
+  </div>
+
+  {%- comment -%} =========== Cart view modal =========== {%- endcomment -%}
+  <div class="modal-overlay hidden" id="cart-view-modal">
+    <div class="cart-modal-card">
+      <span class="modal-close-x" style="position:absolute; top:14px; right:18px; font-size:24px; color:var(--muted); cursor:pointer;"
+            onclick="document.getElementById('cart-view-modal').classList.add('hidden')">&times;</span>
+      <h2>Here's your order!</h2>
+      <p class="cart-modal-sub" id="cart-modal-sub">Review your cart, save it for later, or check out.</p>
+      <div id="cart-list" class="cart-list"></div>
+      <div class="cart-eta">
+        <span style="font-size: 16px;">📦</span>
+        <span><strong>Expect delivery in ~36 hours</strong> from time of order — Monday through Friday only. Free shipping on every order.</span>
+      </div>
+      <div class="cart-summary" id="cart-summary"></div>
+      <div class="cart-actions">
+        <button class="btn-save-cart" id="cart-save-btn">Save Cart</button>
+        <button class="btn-keep-shopping" id="cart-keep-shopping">Keep Shopping</button>
+        <button class="btn-checkout-cart" id="cart-checkout-btn">Checkout &rarr;</button>
+      </div>
+      <div class="saved-carts-section" id="saved-carts-section" style="display: none;">
+        <div class="saved-carts-title">Saved Carts</div>
+        <div id="saved-carts-list"></div>
+      </div>
+    </div>
+  </div>
+
+  {%- comment -%} =========== Checkout modal (prototype-style; production routes to /checkout) =========== {%- endcomment -%}
+  <div class="modal-overlay hidden" id="checkout-modal">
+    <div class="checkout-modal-card">
+      <span class="modal-close-x" style="position:absolute; top:14px; right:18px; font-size:24px; color:var(--muted); cursor:pointer;"
+            onclick="document.getElementById('checkout-modal').classList.add('hidden')">&times;</span>
+      <h2>Shipping &amp; Payment</h2>
+      <p class="checkout-sub">FedEx ground to your property. We'll print and ship — you'll have your signs in hand fast.</p>
+
+      <div class="shipping-fields">
+        <div class="field-row full">
+          <input type="text" placeholder="Property / Recipient Name"
+                 value="{% if customer.default_address %}{{ customer.default_address.company | default: customer.default_address.name }}{% endif %}">
+        </div>
+        <div class="field-row full">
+          <input type="text" placeholder="Street Address"
+                 value="{% if customer.default_address %}{{ customer.default_address.address1 }}{% endif %}">
+        </div>
+        <div class="field-row">
+          <input type="text" placeholder="City"
+                 value="{% if customer.default_address %}{{ customer.default_address.city }}{% endif %}">
+          <input type="text" placeholder="State"
+                 value="{% if customer.default_address %}{{ customer.default_address.province_code }}{% endif %}">
+        </div>
+        <div class="field-row">
+          <input type="text" placeholder="ZIP"
+                 value="{% if customer.default_address %}{{ customer.default_address.zip }}{% endif %}">
+          <input type="tel" placeholder="Phone (for FedEx delivery)"
+                 value="{% if customer.default_address %}{{ customer.default_address.phone }}{% endif %}">
+        </div>
+      </div>
+
+      <div class="delivery-est">
+        <div class="delivery-est-label">📦 Expected Delivery</div>
+        <div class="delivery-est-date" id="delivery-est-date">Calculating…</div>
+        <div class="delivery-est-note">~36 hours from order. Business days only (Mon–Fri). Free FedEx shipping.</div>
+      </div>
+
+      <div class="cart-summary" id="checkout-summary"></div>
+
+      <div class="cart-actions" style="grid-template-columns: 1fr 1.4fr;">
+        <button class="btn-keep-shopping" onclick="document.getElementById('checkout-modal').classList.add('hidden')">Back to Cart</button>
+        <button class="btn-checkout-cart" id="checkout-place-order">Place Your Order</button>
+      </div>
+      <p style="font-size: 11px; color: var(--muted); margin-top: 14px; text-align: center;">Place Your Order continues to Shopify Payments. On payment success, your order auto-creates a new request on Monday.com.</p>
+    </div>
+  </div>
+
+</div>
+
+{%- comment -%}
+  Configurator JS — defer so it loads after the DOM and the JSON catalog above.
+  The JS attaches to DOMContentLoaded so order of evaluation is fine.
+{%- endcomment -%}
+<script src="{{ 'configurator.js' | asset_url }}" defer></script>
+
+{% schema %}
+{
+  "name": "Configurator App",
+  "settings": []
+}
+{% endschema %}

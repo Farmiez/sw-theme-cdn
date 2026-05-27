@@ -1,0 +1,28 @@
+<section class="apply-section">
+  <div class="apply-card">
+    <div class="hero-eyebrow" style="margin-bottom: 14px;">{{ section.settings.eyebrow | default: 'Apartment Direct · Communities Only' }}</div>
+    <h2>{{ section.settings.heading | default: 'Ready to Open Your SignageWorks Account?' }}</h2>
+    <p>{{ section.settings.body | default: 'SignageWorks is built for apartment communities, property managers, management companies, and multifamily portfolios. Approved accounts get access to online design, instant proofs, transparent pricing, and the full apartment sign catalog.' }}</p>
+    <div class="apply-buttons">
+      <button class="btn-hero-primary" id="apply-btn-bottom">{{ section.settings.primary_cta | default: 'Open Your SignageWorks Account' }}</button>
+      <button class="btn-hero-secondary" id="login-btn-bottom">{{ section.settings.secondary_cta | default: 'Log In to Your Account' }}</button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Apply CTA",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Apartment Direct · Communities Only" },
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Ready to Open Your SignageWorks Account?" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "SignageWorks is built for apartment communities, property managers, management companies, and multifamily portfolios. Approved accounts get access to online design, instant proofs, transparent pricing, and the full apartment sign catalog." },
+    { "type": "text", "id": "primary_cta", "label": "Primary CTA label", "default": "Open Your SignageWorks Account" },
+    { "type": "text", "id": "secondary_cta", "label": "Secondary CTA label", "default": "Log In to Your Account" }
+  ],
+  "presets": [
+    { "name": "Apply CTA" }
+  ]
+}
+{% endschema %}

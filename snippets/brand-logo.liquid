@@ -1,0 +1,24 @@
+{%- comment -%}
+  Reusable brand logo image.
+  Params:
+    class    - css class to apply (defaults to brand-logo-img)
+    alt      - alt text override
+    link     - if true, wraps in an anchor scrolled to top
+{%- endcomment -%}
+
+{%- assign _class = class | default: 'brand-logo-img' -%}
+{%- assign _alt = alt | default: 'SignageWorks — World-Class Apartment Signage' -%}
+
+{%- if settings.brand_logo != blank -%}
+  {%- assign _src = settings.brand_logo | image_url: width: 440 -%}
+{%- else -%}
+  {%- assign _src = 'signageworks-logo-reversed-for-dark-bg.png' | asset_url -%}
+{%- endif -%}
+
+{%- if link -%}
+  <a href="#top" class="brand-logo-link" aria-label="SignageWorks — go to top" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;">
+    <img class="{{ _class }}" src="{{ _src }}" alt="{{ _alt }}">
+  </a>
+{%- else -%}
+  <img class="{{ _class }}" src="{{ _src }}" alt="{{ _alt }}">
+{%- endif -%}

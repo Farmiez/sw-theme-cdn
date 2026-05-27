@@ -1,0 +1,25 @@
+{
+  "type": "header",
+  "name": "Header group",
+  "sections": {
+    "header": {
+      "type": "header",
+      "settings": {
+        "show_announcement_bar": true,
+        "announce_msg_1": "INSTANT ONLINE PROOFS",
+        "announce_msg_2": "FREE SHIPPING",
+        "announce_msg_3": "FAST TURNAROUND",
+        "login_label": "Log In",
+        "apply_label": "Open Account"
+      },
+      "blocks": {
+        "nav-1": { "type": "nav_link", "settings": { "label": "Shop by Category", "link": "#categories", "has_dropdown": true } },
+        "nav-2": { "type": "nav_link", "settings": { "label": "How It Works", "link": "#how-it-works" } },
+        "nav-3": { "type": "nav_link", "settings": { "label": "Popular Signs", "link": "#popular" } },
+        "nav-4": { "type": "nav_link", "settings": { "label": "Property Showcase", "link": "#showcase" } }
+      },
+      "block_order": ["nav-1", "nav-2", "nav-3", "nav-4"]
+    }
+  },
+  "order": ["header"]
+}

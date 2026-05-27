@@ -1,0 +1,26 @@
+<div class="modal-overlay hidden" id="locked-modal">
+  <div class="modal-card">
+    <span class="modal-close-x" onclick="closeModal('locked-modal')">&times;</span>
+    <div class="modal-toast">
+      <div class="emoji">🔒</div>
+      <h2>{{ section.settings.heading | default: 'SignageWorks Account Required' }}</h2>
+      <p class="modal-sub">{{ section.settings.body | default: 'Pricing, the customizer, and ordering open up once you have an active SignageWorks Account. Free to open — apartment communities only.' }}</p>
+      <div class="modal-actions">
+        <button class="modal-submit" onclick="closeModal('locked-modal'); openModal('apply-modal');">{{ section.settings.primary_cta | default: 'Open Your SignageWorks Account' }}</button>
+        <button class="modal-cancel" onclick="closeModal('locked-modal'); openModal('login-modal');">{{ section.settings.secondary_cta | default: 'Log In' }}</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Locked Modal",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "SignageWorks Account Required" },
+    { "type": "textarea", "id": "body", "label": "Body", "default": "Pricing, the customizer, and ordering open up once you have an active SignageWorks Account. Free to open — apartment communities only." },
+    { "type": "text", "id": "primary_cta", "label": "Primary CTA (opens apply modal)", "default": "Open Your SignageWorks Account" },
+    { "type": "text", "id": "secondary_cta", "label": "Secondary CTA (opens login modal)", "default": "Log In" }
+  ]
+}
+{% endschema %}

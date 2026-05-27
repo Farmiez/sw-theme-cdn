@@ -1,0 +1,18 @@
+{%- comment -%}
+  Reusable Inky mascot image. Used inside the chat launcher and anywhere we
+  want the bioluminescent octopus avatar.
+  Params:
+    class - css class override
+    alt   - alt text override
+{%- endcomment -%}
+
+{%- assign _class = class | default: 'inky-img' -%}
+{%- assign _alt = alt | default: 'Inky the SignageWorks mascot' -%}
+
+{%- if settings.inky_mascot != blank -%}
+  {%- assign _src = settings.inky_mascot | image_url: width: 200 -%}
+{%- else -%}
+  {%- assign _src = 'inky-mascot.png' | asset_url -%}
+{%- endif -%}
+
+<img class="{{ _class }}" src="{{ _src }}" alt="{{ _alt }}">

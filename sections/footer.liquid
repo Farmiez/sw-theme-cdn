@@ -1,0 +1,119 @@
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      {%- render 'brand-logo', class: 'footer-logo-img', alt: 'SignageWorks' -%}
+      <p>{{ section.settings.brand_blurb | default: 'World-Class Apartment Signage Design &amp; Supply. Instant online proofs. Fast turnaround. Free shipping.' }}</p>
+      <p style="margin-top: 10px; color: var(--cyan); font-weight: 700;">{{ section.settings.contact_email | default: 'hello@signageworks.com' }}</p>
+    </div>
+
+    {%- for block in section.blocks -%}
+      {%- if block.type == 'column' -%}
+        <div class="footer-col" {{ block.shopify_attributes }}>
+          <h4>{{ block.settings.heading }}</h4>
+          {%- assign links = block.settings.links | newline_to_br | split: '<br />' -%}
+          {%- for raw in links -%}
+            {%- assign trimmed = raw | strip -%}
+            {%- if trimmed != blank -%}
+              {%- comment -%} Format per line: "Label" or "Label|url" or "Label|id=footer-apply" {%- endcomment -%}
+              {%- assign parts = trimmed | split: '|' -%}
+              {%- assign label = parts[0] | strip -%}
+              {%- assign target = parts[1] | strip -%}
+              {%- if target contains 'id=' -%}
+                {%- assign linkid = target | remove: 'id=' | strip -%}
+                <a id="{{ linkid }}">{{ label }}</a>
+              {%- elsif target != blank -%}
+                <a href="{{ target }}">{{ label }}</a>
+              {%- else -%}
+                <a>{{ label }}</a>
+              {%- endif -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+
+  <div class="footer-bottom">
+    <div><span class="magenta-strip">{{ section.settings.bottom_badge | default: 'Apartment Direct · Communities Only' }}</span></div>
+    <div>{{ section.settings.copyright | default: '© 2026 SignageWorks · All Rights Reserved' }}</div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "section",
+  "class": "shopify-section-footer",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_blurb",
+      "label": "Brand blurb",
+      "default": "World-Class Apartment Signage Design & Supply. Instant online proofs. Fast turnaround. Free shipping."
+    },
+    {
+      "type": "text",
+      "id": "contact_email",
+      "label": "Contact email",
+      "default": "hello@signageworks.com"
+    },
+    {
+      "type": "text",
+      "id": "bottom_badge",
+      "label": "Bottom-left badge",
+      "default": "Apartment Direct · Communities Only"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright",
+      "default": "© 2026 SignageWorks · All Rights Reserved"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Link column",
+      "settings": [
+        { "type": "text", "id": "heading", "label": "Heading", "default": "Shop" },
+        {
+          "type": "textarea",
+          "id": "links",
+          "label": "Links (one per line. Format: Label  OR  Label|/url  OR  Label|id=footer-apply)",
+          "default": "Address & Building Signs\nAmenity Signs\nPool Signs\nParking & Traffic Signs\nWayfinding & Directional Signs\nLeasing & Future Resident Signs\nMonument & Entrance Signs\nRules & Property Notice Signs\nMaintenance & Facility Signs"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 6,
+  "default": {
+    "settings": {},
+    "blocks": [
+      {
+        "type": "column",
+        "settings": {
+          "heading": "Shop",
+          "links": "Address & Building Signs\nAmenity Signs\nPool Signs\nParking & Traffic Signs\nWayfinding & Directional Signs\nLeasing & Future Resident Signs\nMonument & Entrance Signs\nRules & Property Notice Signs\nMaintenance & Facility Signs"
+        }
+      },
+      {
+        "type": "column",
+        "settings": {
+          "heading": "Account",
+          "links": "Apply|id=footer-apply\nLog In|id=footer-login\nOrder Status\nResources"
+        }
+      },
+      {
+        "type": "column",
+        "settings": {
+          "heading": "Company",
+          "links": "About SignageWorks\nContact\nFAQ\nTerms\nPrivacy"
+        }
+      }
+    ]
+  },
+  "presets": [
+    { "name": "Footer" }
+  ]
+}
+{% endschema %}

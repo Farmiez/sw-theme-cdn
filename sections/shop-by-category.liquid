@@ -1,0 +1,40 @@
+<section class="section" id="categories">
+  <div class="section-eyebrow">{{ section.settings.eyebrow | default: 'Shop By Category' }}</div>
+  <h2 class="section-title">{{ section.settings.title | default: 'Every sign your apartment community needs' }}</h2>
+  <p class="section-sub">{{ section.settings.subtitle | default: 'One trusted source for the complete property package — monument to unit number, leasing office to pool deck. Order any quantity, ship the same fast way.' }}</p>
+  {%- comment -%}
+    The category cards are rendered by signageworks-main.js so the data lives in
+    one place (CATEGORIES array). The grid container is just the mount point.
+  {%- endcomment -%}
+  <div class="cat-grid" id="cat-grid"></div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop by Category",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Shop By Category"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Every sign your apartment community needs"
+    },
+    {
+      "type": "textarea",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "One trusted source for the complete property package — monument to unit number, leasing office to pool deck. Order any quantity, ship the same fast way."
+    }
+  ],
+  "presets": [
+    { "name": "Shop by Category" }
+  ]
+}
+{% endschema %}

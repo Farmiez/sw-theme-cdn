@@ -1,0 +1,39 @@
+{%- comment -%}
+  ============================================================
+  PAGE TEMPLATE — Configurator
+  ============================================================
+  Custom page template used by the Shopify page at /configurator.
+
+  Setup in Shopify Admin:
+    1. Online Store > Pages > Add page
+    2. Title: "Configurator" (URL handle: configurator)
+    3. Template suffix: select "page.configurator"
+    4. Save
+
+  Auth gating:
+    The configurator is exclusively for logged-in customers
+    (apartment-direct accounts only). Logged-out visitors get
+    a brief "Account Required" gate with links to Log In / Apply.
+  ============================================================
+{%- endcomment -%}
+
+{% layout 'theme' %}
+
+{% if customer %}
+  {% section 'configurator-app' %}
+{% else %}
+  <div class="auth-required">
+    <h1>SignageWorks Account Required</h1>
+    <p>
+      The design tool is for approved apartment communities only. You'll need to log in
+      or open a free SignageWorks Account to access the designer, see pricing, and
+      place orders.
+    </p>
+    <p style="font-size: 13px; color: var(--muted);">
+      Apartment Direct · Communities Only
+    </p>
+    <a href="{{ routes.account_login_url }}" class="btn-primary">Log In</a>
+    <a href="/pages/apply" class="btn-secondary">Open Your SignageWorks Account</a>
+  </div>
+  {{ 'configurator.css' | asset_url | stylesheet_tag }}
+{% endif %}

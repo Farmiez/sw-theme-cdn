@@ -1,0 +1,67 @@
+<div class="modal-overlay hidden" id="apply-modal">
+  <div class="modal-card">
+    <span class="modal-close-x" onclick="closeModal('apply-modal')">&times;</span>
+    <h2>{{ section.settings.heading | default: 'Open Your SignageWorks Account' }}</h2>
+    <p class="modal-sub">{{ section.settings.sub | default: 'For apartment communities, property managers, and multifamily operators. We approve accounts same business day.' }}</p>
+    <div id="apply-form-wrap">
+      <label class="field-label">{{ section.settings.label_property | default: 'Property / Management Company' }}</label>
+      <input type="text" name="property_name" placeholder="ShadowMoss Pointe Apartments">
+
+      <label class="field-label">{{ section.settings.label_name | default: 'Your Name' }}</label>
+      <input type="text" name="applicant_name" placeholder="Jordan Lee">
+
+      <label class="field-label">{{ section.settings.label_role | default: 'Role' }}</label>
+      <select name="role">
+        <option>Property Manager</option>
+        <option>Regional Manager</option>
+        <option>Owner / Operator</option>
+        <option>Maintenance Director</option>
+        <option>Marketing / Leasing</option>
+      </select>
+
+      <label class="field-label">{{ section.settings.label_email | default: 'Email' }}</label>
+      <input type="email" name="email" placeholder="you@property.com">
+
+      <label class="field-label">{{ section.settings.label_phone | default: 'Phone' }}</label>
+      <input type="tel" name="phone" placeholder="555-555-5555">
+
+      <label class="field-label">{{ section.settings.label_units | default: 'Number of Units (this property)' }}</label>
+      <input type="number" name="unit_count" placeholder="180">
+
+      <div class="modal-actions">
+        <button class="modal-cancel" onclick="closeModal('apply-modal')">{{ section.settings.cancel_label | default: 'Cancel' }}</button>
+        <button class="modal-submit" id="apply-submit-btn" onclick="submitApply()">{{ section.settings.submit_label | default: 'Submit Application' }}</button>
+      </div>
+    </div>
+    <div id="apply-success" class="modal-toast" style="display: none;">
+      <div class="emoji">🐙</div>
+      <h2 style="color: var(--cyan);">{{ section.settings.success_heading | default: 'Application Received!' }}</h2>
+      <p class="modal-sub">{{ section.settings.success_body | default: "Welcome to the pod. We'll review your application and reach out within one business day to activate your account." }}</p>
+      <button class="btn-magenta" style="width: 100%; padding: 12px;" onclick="closeModal('apply-modal')">{{ section.settings.success_cta | default: 'Got It' }}</button>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Apply Modal",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Heading", "default": "Open Your SignageWorks Account" },
+    { "type": "textarea", "id": "sub", "label": "Subheading", "default": "For apartment communities, property managers, and multifamily operators. We approve accounts same business day." },
+    { "type": "header", "content": "Form labels" },
+    { "type": "text", "id": "label_property", "label": "Property field label", "default": "Property / Management Company" },
+    { "type": "text", "id": "label_name", "label": "Name field label", "default": "Your Name" },
+    { "type": "text", "id": "label_role", "label": "Role field label", "default": "Role" },
+    { "type": "text", "id": "label_email", "label": "Email field label", "default": "Email" },
+    { "type": "text", "id": "label_phone", "label": "Phone field label", "default": "Phone" },
+    { "type": "text", "id": "label_units", "label": "Unit-count field label", "default": "Number of Units (this property)" },
+    { "type": "header", "content": "Buttons" },
+    { "type": "text", "id": "cancel_label", "label": "Cancel button", "default": "Cancel" },
+    { "type": "text", "id": "submit_label", "label": "Submit button", "default": "Submit Application" },
+    { "type": "header", "content": "Success state" },
+    { "type": "text", "id": "success_heading", "label": "Success heading", "default": "Application Received!" },
+    { "type": "textarea", "id": "success_body", "label": "Success body", "default": "Welcome to the pod. We'll review your application and reach out within one business day to activate your account." },
+    { "type": "text", "id": "success_cta", "label": "Success CTA", "default": "Got It" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,62 @@
+{
+  "general": {
+    "meta": {
+      "tags": "Tagged \"{{ tags }}\"",
+      "page": "Page {{ page }}"
+    },
+    "accessibility": {
+      "skip_to_content": "Skip to content",
+      "close": "Close",
+      "open_chat": "Open chat with Inky",
+      "close_chat": "Close chat",
+      "send_message": "Send message"
+    }
+  },
+  "header": {
+    "login": "Log In",
+    "apply": "Open Account",
+    "logo_alt": "SignageWorks — World-Class Apartment Signage"
+  },
+  "hero": {
+    "eyebrow": "APARTMENT DIRECT · COMMUNITIES ONLY",
+    "primary_cta": "Open Your SignageWorks Account",
+    "secondary_cta": "Already Have an Account? Log In",
+    "scroll_cue": "↓ See How It Works"
+  },
+  "pillars": {
+    "built_for_apartments": "Built for Apartments",
+    "fast_turnaround": "Fast Turnaround",
+    "free_shipping": "Free Shipping",
+    "instant_proofs": "Instant Online Proofs"
+  },
+  "modals": {
+    "apply": {
+      "title": "Open Your SignageWorks Account",
+      "submit": "Submit Application",
+      "cancel": "Cancel"
+    },
+    "login": {
+      "title": "Log In",
+      "submit": "Log In →",
+      "forgot": "Forgot password?"
+    },
+    "locked": {
+      "title": "SignageWorks Account Required",
+      "primary": "Open Your SignageWorks Account",
+      "secondary": "Log In"
+    }
+  },
+  "chat": {
+    "launcher_label": "Ask Inky",
+    "title": "Ask Inky",
+    "subtitle": "Apartment signage · Online 24/7",
+    "placeholder": "Ask anything about apartment signs…",
+    "footnote": "Apartment Direct · Communities Only"
+  },
+  "footer": {
+    "shop": "Shop",
+    "account": "Account",
+    "company": "Company",
+    "badge": "Apartment Direct · Communities Only"
+  }
+}

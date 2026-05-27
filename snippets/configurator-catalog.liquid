@@ -1,0 +1,648 @@
+{%- comment -%}
+  ============================================================
+  CONFIGURATOR CATALOG
+  ============================================================
+  Variant ID mapping (per material x size combination).
+  Each size entry carries a `variantIds` map keyed by material key
+  (metro/summit). configurator.js reads size.variantIds[state.material]
+  and posts that variant ID to /cart/add.js so Shopify charges the
+  exact price for the chosen material + size.
+  Variant IDs are LIVE (store a6a90c-f2, created 2026-05-27).
+  ============================================================
+{%- endcomment -%}
+
+<script id="configurator-catalog" type="application/json">
+{
+  "materials": {
+    "metro": {
+      "key": "metro",
+      "name": "Metro Beach",
+      "substrate": "Reverse-Printed Acrylic",
+      "desc": "Premium glass-like finish. The high-end choice for leasing office and amenity-area signs.",
+      "accent": "#EC008C"
+    },
+    "summit": {
+      "key": "summit",
+      "name": "Summit View",
+      "substrate": "Custom-Printed J-Bond",
+      "desc": "Durable outdoor-grade aluminum composite. Weather-tough. The workhorse for property-wide signage.",
+      "accent": "#00AEEF"
+    }
+  },
+  "shapes": {
+    "rectangle": {
+      "name": "Rectangle",
+      "desc": "Standard squared corners."
+    },
+    "rounded": {
+      "name": "Rounded Rectangle",
+      "desc": "Softly rounded corners."
+    },
+    "monument": {
+      "name": "Monument Arch",
+      "desc": "Curved top, flat sides."
+    },
+    "capsule": {
+      "name": "Half-Round / Capsule",
+      "desc": "Stadium-style rounded ends."
+    },
+    "shield": {
+      "name": "Shield",
+      "desc": "Flat top, tapered bottom."
+    }
+  },
+  "backgrounds": {
+    "coastal-cyan": {
+      "name": "Coastal Slate · Cyan",
+      "fg": "#1a2733",
+      "accent": "#00AEEF",
+      "text": "#fff",
+      "sub": "#bcd"
+    },
+    "coastal-magenta": {
+      "name": "Coastal Slate · Magenta",
+      "fg": "#1a2733",
+      "accent": "#EC008C",
+      "text": "#fff",
+      "sub": "#bcd"
+    },
+    "coastal-yellow": {
+      "name": "Coastal Slate · Yellow",
+      "fg": "#1a2733",
+      "accent": "#FFD700",
+      "text": "#fff",
+      "sub": "#bcd"
+    },
+    "clean-white": {
+      "name": "Clean White",
+      "fg": "#ffffff",
+      "accent": "#00AEEF",
+      "text": "#1a2733",
+      "sub": "#475569"
+    },
+    "coastal-wave": {
+      "name": "Coastal Wave (premium)",
+      "fg": "#0a2540",
+      "accent": "#FFD700",
+      "text": "#fff",
+      "sub": "#cde",
+      "wave": true
+    },
+    "safety-yellow": {
+      "name": "High-Visibility Yellow",
+      "fg": "#FFD700",
+      "accent": "#000",
+      "text": "#000",
+      "sub": "#222"
+    }
+  },
+  "fonts": {
+    "modern-sans": {
+      "name": "Modern Sans",
+      "family": "\"Inter\",\"Segoe UI\",sans-serif",
+      "weight": 700,
+      "sample": "ShadowMoss Pointe",
+      "widthRatio": 0.52
+    },
+    "classic-serif": {
+      "name": "Classic Serif",
+      "family": "Georgia,\"Times New Roman\",serif",
+      "weight": 700,
+      "sample": "ShadowMoss Pointe",
+      "widthRatio": 0.55
+    },
+    "condensed-bold": {
+      "name": "Bold Condensed",
+      "family": "\"Impact\",\"Arial Narrow\",sans-serif",
+      "weight": 800,
+      "sample": "SHADOWMOSS POINTE",
+      "widthRatio": 0.48
+    },
+    "elegant-display": {
+      "name": "Elegant Display",
+      "family": "\"Palatino Linotype\",\"Book Antiqua\",serif",
+      "weight": 700,
+      "sample": "ShadowMoss Pointe",
+      "widthRatio": 0.56
+    },
+    "friendly-round": {
+      "name": "Friendly Round",
+      "family": "\"Trebuchet MS\",\"Lucida Sans\",sans-serif",
+      "weight": 700,
+      "sample": "ShadowMoss Pointe",
+      "widthRatio": 0.55
+    },
+    "clean-geometric": {
+      "name": "Clean Geometric",
+      "family": "\"Verdana\",\"Geneva\",sans-serif",
+      "weight": 700,
+      "sample": "ShadowMoss Pointe",
+      "widthRatio": 0.6
+    }
+  },
+  "catalog": {
+    "leasing-office-wall": {
+      "name": "Leasing Office Wall Sign",
+      "category": "Leasing & Future Resident",
+      "shopify_product_id": "7896986910762",
+      "sizes": [
+        {
+          "label": "18\" × 24\"",
+          "w": 18,
+          "h": 24,
+          "metro": 135,
+          "summit": 95,
+          "variantIds": {
+            "metro": "44404205453354",
+            "summit": "44404205486122"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-cyan",
+      "template": "leasing-office",
+      "desc": "Wall-mounted leasing office sign with hours and phone.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "title",
+          "label": "Sign Title",
+          "default": "Leasing Office"
+        },
+        {
+          "key": "hoursLine1",
+          "label": "Hours Line 1",
+          "default": "Monday-Friday   8:30-5:30"
+        },
+        {
+          "key": "hoursLine2",
+          "label": "Hours Line 2",
+          "default": "Saturday              9:00-5:00"
+        },
+        {
+          "key": "hoursLine3",
+          "label": "Hours Line 3",
+          "default": "Sunday                  Closed"
+        },
+        {
+          "key": "phone",
+          "label": "Phone",
+          "default": "843.766.2220"
+        }
+      ]
+    },
+    "leasing-office-post": {
+      "name": "Leasing Office Post Sign",
+      "category": "Leasing & Future Resident",
+      "shopify_product_id": "7896987271210",
+      "sizes": [
+        {
+          "label": "24\" × 36\"",
+          "w": 24,
+          "h": 36,
+          "metro": 255,
+          "summit": 235,
+          "variantIds": {
+            "metro": "44404205879338",
+            "summit": "44404205912106"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-cyan",
+      "template": "leasing-office",
+      "desc": "Post-mounted leasing office sign with hours and phone.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "title",
+          "label": "Sign Title",
+          "default": "Leasing Office"
+        },
+        {
+          "key": "hoursLine1",
+          "label": "Hours Line 1",
+          "default": "Monday-Friday   8:30-5:30"
+        },
+        {
+          "key": "hoursLine2",
+          "label": "Hours Line 2",
+          "default": "Saturday              9:00-5:00"
+        },
+        {
+          "key": "hoursLine3",
+          "label": "Hours Line 3",
+          "default": "Sunday                  Closed"
+        },
+        {
+          "key": "phone",
+          "label": "Phone",
+          "default": "843.766.2220"
+        }
+      ]
+    },
+    "leasing-office-directional": {
+      "name": "Leasing Office Directional",
+      "category": "Wayfinding & Directional",
+      "shopify_product_id": "7896987467818",
+      "sizes": [
+        {
+          "label": "18\" × 24\"",
+          "w": 18,
+          "h": 24,
+          "metro": 135,
+          "summit": 95,
+          "variantIds": {
+            "metro": "44404206108714",
+            "summit": "44404206141482"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-cyan",
+      "template": "directional",
+      "desc": "Directional sign pointing to the leasing office.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "title",
+          "label": "Sign Title",
+          "default": "Leasing Office"
+        },
+        {
+          "key": "arrow",
+          "label": "Arrow Direction",
+          "default": "right",
+          "options": [
+            "left",
+            "right",
+            "up",
+            "down"
+          ]
+        }
+      ]
+    },
+    "pool-rules": {
+      "name": "Pool Rules",
+      "category": "Pool Signs",
+      "shopify_product_id": "7896987500586",
+      "sizes": [
+        {
+          "label": "24\" × 36\"",
+          "w": 24,
+          "h": 36,
+          "metro": 255,
+          "summit": 235,
+          "variantIds": {
+            "metro": "44404206174250",
+            "summit": "44404206207018"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-yellow",
+      "template": "pool-rules",
+      "desc": "Full pool rules text — text-heavy premium-tier sign.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "title",
+          "label": "Sign Title",
+          "default": "Pool Rules"
+        },
+        {
+          "key": "rules",
+          "label": "Rules Text",
+          "default": "NO solo swimming\nNO running, horseplay, or rough play\nNO persons under the influence of alcohol or drugs\nNO spitting or blowing nose in pool\nNO glass allowed in pool or on deck\nNO children allowed without supervision\n\nPool open 9 am to sundown. Maximum capacity: 65 swimmers.",
+          "multiline": true
+        },
+        {
+          "key": "phone",
+          "label": "Emergency Phone",
+          "default": "843.766.2220"
+        }
+      ]
+    },
+    "reserved-parking": {
+      "name": "Reserved Parking",
+      "category": "Parking & Traffic",
+      "shopify_product_id": "7896987566122",
+      "sizes": [
+        {
+          "label": "18\" × 24\"",
+          "w": 18,
+          "h": 24,
+          "metro": 135,
+          "summit": 95,
+          "variantIds": {
+            "metro": "44404206272554",
+            "summit": "44404206305322"
+          }
+        },
+        {
+          "label": "12\" × 18\"",
+          "w": 12,
+          "h": 18,
+          "metro": 135,
+          "summit": 95,
+          "variantIds": {
+            "metro": "44404206338090",
+            "summit": "44404206370858"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-magenta",
+      "template": "simple",
+      "desc": "Reserved parking sign — your property decides the use.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "title",
+          "label": "Sign Title",
+          "default": "Reserved Parking"
+        },
+        {
+          "key": "subtext",
+          "label": "Sub-text (optional)",
+          "default": ""
+        }
+      ]
+    },
+    "future-resident-parking": {
+      "name": "Future Resident Parking",
+      "category": "Leasing & Future Resident",
+      "shopify_product_id": "7896987729962",
+      "sizes": [
+        {
+          "label": "18\" × 24\"",
+          "w": 18,
+          "h": 24,
+          "metro": 135,
+          "summit": 95,
+          "variantIds": {
+            "metro": "44404206501930",
+            "summit": "44404206534698"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-cyan",
+      "template": "simple",
+      "desc": "Reserved parking for prospective residents.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "title",
+          "label": "Sign Title",
+          "default": "Future Resident Parking"
+        }
+      ]
+    },
+    "building-address": {
+      "name": "Building Address",
+      "category": "Address & Building",
+      "shopify_product_id": "7896987762730",
+      "sizes": [
+        {
+          "label": "18\" × 24\"",
+          "w": 18,
+          "h": 24,
+          "metro": 135,
+          "summit": 95,
+          "variantIds": {
+            "metro": "44404206600234",
+            "summit": "44404206633002"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-cyan",
+      "template": "building-address",
+      "desc": "Per-building address ID with big number display.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "label",
+          "label": "Label",
+          "default": "Building"
+        },
+        {
+          "key": "number",
+          "label": "Building Number",
+          "default": "15"
+        }
+      ]
+    },
+    "unit-number": {
+      "name": "Unit Number",
+      "category": "Address & Building",
+      "shopify_product_id": "7896987795498",
+      "sizes": [
+        {
+          "label": "4\" × 9\"",
+          "w": 9,
+          "h": 4,
+          "metro": 222,
+          "summit": 222,
+          "variantIds": {
+            "metro": "44404206665770",
+            "summit": "44404206698538"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded"
+      ],
+      "defaultBg": "coastal-cyan",
+      "template": "unit-number",
+      "desc": "Door / apartment unit number strip.",
+      "textFields": [
+        {
+          "key": "number",
+          "label": "Unit Number",
+          "default": "230"
+        }
+      ]
+    },
+    "fitness-center": {
+      "name": "Fitness Center (Door Label)",
+      "category": "Amenity Signs",
+      "shopify_product_id": "7896987926570",
+      "sizes": [
+        {
+          "label": "8\" × 36\"",
+          "w": 36,
+          "h": 8,
+          "metro": 85,
+          "summit": 75,
+          "variantIds": {
+            "metro": "44404207484970",
+            "summit": "44404207517738"
+          }
+        }
+      ],
+      "materials": [
+        "metro",
+        "summit"
+      ],
+      "shapes": [
+        "rectangle",
+        "rounded",
+        "capsule"
+      ],
+      "defaultBg": "coastal-cyan",
+      "template": "amenity-strip",
+      "desc": "Door / room ID strip for the fitness center.",
+      "textFields": [
+        {
+          "key": "title",
+          "label": "Room Name",
+          "default": "Fitness Center"
+        }
+      ]
+    },
+    "monument-face": {
+      "name": "Monument Face Replacement",
+      "category": "Monument & Entrance",
+      "shopify_product_id": "7896988024874",
+      "sizes": [
+        {
+          "label": "48\" × 96\"",
+          "w": 96,
+          "h": 48,
+          "metro": null,
+          "summit": 695,
+          "variantIds": {
+            "summit": "44404207648810"
+          }
+        },
+        {
+          "label": "38\" × 48\"",
+          "w": 48,
+          "h": 38,
+          "metro": null,
+          "summit": 695,
+          "variantIds": {
+            "summit": "44404207681578"
+          }
+        }
+      ],
+      "materials": [
+        "summit"
+      ],
+      "shapes": [
+        "monument"
+      ],
+      "defaultBg": "coastal-wave",
+      "template": "monument",
+      "desc": "Outdoor monument entry sign — Summit View only.",
+      "textFields": [
+        {
+          "key": "propertyName",
+          "label": "Property Name",
+          "default": "ShadowMoss Pointe"
+        },
+        {
+          "key": "url",
+          "label": "Website URL",
+          "default": "www.shadowmosspointeapts.com"
+        }
+      ]
+    }
+  },
+  "category_order": [
+    "Address & Building",
+    "Amenity Signs",
+    "Pool Signs",
+    "Parking & Traffic",
+    "Wayfinding & Directional",
+    "Leasing & Future Resident",
+    "Monument & Entrance",
+    "Rules & Property Notice",
+    "Maintenance & Facility"
+  ]
+}
+</script>

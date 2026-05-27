@@ -1,0 +1,107 @@
+<section class="hero">
+  {%- if section.settings.hero_video != blank -%}
+    <video class="hero-video" autoplay loop muted playsinline src="{{ section.settings.hero_video | file_url }}"></video>
+  {%- else -%}
+    <video class="hero-video" autoplay loop muted playsinline src="{{ 'octopus-hero.mp4' | asset_url }}"></video>
+  {%- endif -%}
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">{{ section.settings.eyebrow | default: 'APARTMENT DIRECT · COMMUNITIES ONLY' }}</div>
+    <h1>
+      {{ section.settings.headline_line_1 | default: 'World-Class' }} <br>
+      <span class="accent-cyan">{{ section.settings.headline_accent_cyan | default: 'Apartment' }}</span> <span class="accent-magenta">{{ section.settings.headline_accent_magenta | default: 'Signage' }}</span>
+    </h1>
+    <p class="lead">{{ section.settings.lead | default: 'From monument signs to unit numbers, we design, produce, and ship the full property signage package your community needs.' }}</p>
+
+    <div class="value-row">
+      <div class="value-pill cyan"><span class="icon">{{ section.settings.pill_1_icon | default: '👁' }}</span> {{ section.settings.pill_1_label | default: 'Instant Proofs' }}</div>
+      <div class="value-pill magenta"><span class="icon">{{ section.settings.pill_2_icon | default: '📦' }}</span> {{ section.settings.pill_2_label | default: 'Free Shipping' }}</div>
+      <div class="value-pill yellow"><span class="icon">{{ section.settings.pill_3_icon | default: '⚡' }}</span> {{ section.settings.pill_3_label | default: 'Fast Turnaround' }}</div>
+    </div>
+
+    <div class="hero-buttons">
+      <button class="btn-hero-primary" id="apply-btn-hero">{{ section.settings.primary_cta | default: 'Open Your SignageWorks Account' }}</button>
+      <button class="btn-hero-secondary" id="login-btn-hero">{{ section.settings.secondary_cta | default: 'Already Have an Account? Log In' }}</button>
+    </div>
+  </div>
+  <div class="hero-scroll-cue">{{ section.settings.scroll_cue | default: '↓ See How It Works' }}</div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "video",
+      "id": "hero_video",
+      "label": "Hero background video (optional; falls back to octopus-hero.mp4 in /assets)"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "APARTMENT DIRECT · COMMUNITIES ONLY"
+    },
+    {
+      "type": "text",
+      "id": "headline_line_1",
+      "label": "Headline line 1",
+      "default": "World-Class"
+    },
+    {
+      "type": "text",
+      "id": "headline_accent_cyan",
+      "label": "Headline accent (cyan)",
+      "default": "Apartment"
+    },
+    {
+      "type": "text",
+      "id": "headline_accent_magenta",
+      "label": "Headline accent (magenta)",
+      "default": "Signage"
+    },
+    {
+      "type": "textarea",
+      "id": "lead",
+      "label": "Lead paragraph",
+      "default": "From monument signs to unit numbers, we design, produce, and ship the full property signage package your community needs."
+    },
+    {
+      "type": "header",
+      "content": "Value Pills"
+    },
+    { "type": "text", "id": "pill_1_icon", "label": "Pill 1 icon", "default": "👁" },
+    { "type": "text", "id": "pill_1_label", "label": "Pill 1 label", "default": "Instant Proofs" },
+    { "type": "text", "id": "pill_2_icon", "label": "Pill 2 icon", "default": "📦" },
+    { "type": "text", "id": "pill_2_label", "label": "Pill 2 label", "default": "Free Shipping" },
+    { "type": "text", "id": "pill_3_icon", "label": "Pill 3 icon", "default": "⚡" },
+    { "type": "text", "id": "pill_3_label", "label": "Pill 3 label", "default": "Fast Turnaround" },
+    {
+      "type": "header",
+      "content": "Buttons"
+    },
+    {
+      "type": "text",
+      "id": "primary_cta",
+      "label": "Primary CTA label",
+      "default": "Open Your SignageWorks Account"
+    },
+    {
+      "type": "text",
+      "id": "secondary_cta",
+      "label": "Secondary CTA label",
+      "default": "Already Have an Account? Log In"
+    },
+    {
+      "type": "text",
+      "id": "scroll_cue",
+      "label": "Scroll cue text",
+      "default": "↓ See How It Works"
+    }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

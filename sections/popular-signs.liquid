@@ -1,0 +1,26 @@
+<section class="section" id="popular">
+  <div class="section-eyebrow">{{ section.settings.eyebrow | default: 'Most-Ordered' }}</div>
+  <h2 class="section-title">{{ section.settings.title | default: 'Popular Apartment Signs' }}</h2>
+  <p class="section-sub">{{ section.settings.subtitle | default: 'The signs apartment property managers reorder the most. Pricing visible after you open your apartment account.' }}</p>
+  {%- comment -%} Cards rendered by signageworks-main.js (POPULAR_SIGNS data) {%- endcomment -%}
+  <div class="popular-grid" id="popular-grid"></div>
+  <div style="text-align: center; margin-top: 32px;">
+    <button class="btn-hero-secondary" id="popular-apply">{{ section.settings.cta_label | default: 'Open a SignageWorks Account to See Pricing' }}</button>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Popular Signs",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Most-Ordered" },
+    { "type": "text", "id": "title", "label": "Title", "default": "Popular Apartment Signs" },
+    { "type": "textarea", "id": "subtitle", "label": "Subtitle", "default": "The signs apartment property managers reorder the most. Pricing visible after you open your apartment account." },
+    { "type": "text", "id": "cta_label", "label": "CTA button label", "default": "Open a SignageWorks Account to See Pricing" }
+  ],
+  "presets": [
+    { "name": "Popular Signs" }
+  ]
+}
+{% endschema %}

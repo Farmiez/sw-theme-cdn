@@ -1,0 +1,12 @@
+{%- comment -%}
+  Announcement bar — used inside the header section.
+  Reads section settings if available, otherwise falls back to defaults.
+{%- endcomment -%}
+
+{%- assign msg1 = section.settings.announce_msg_1 | default: 'INSTANT ONLINE PROOFS' -%}
+{%- assign msg2 = section.settings.announce_msg_2 | default: 'FREE SHIPPING' -%}
+{%- assign msg3 = section.settings.announce_msg_3 | default: 'FAST TURNAROUND' -%}
+
+<div class="announce-bar">
+  <span class="dot">&#9679;</span><span>{{ msg1 }}</span><span class="dot">&#9679;</span><span>{{ msg2 }}</span><span class="dot">&#9679;</span><span>{{ msg3 }}</span><span class="dot">&#9679;</span>
+</div>

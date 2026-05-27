@@ -1,0 +1,40 @@
+{
+  "type": "footer",
+  "name": "Footer group",
+  "sections": {
+    "footer": {
+      "type": "footer",
+      "settings": {
+        "brand_blurb": "World-Class Apartment Signage Design & Supply. Instant online proofs. Fast turnaround. Free shipping.",
+        "contact_email": "hello@signageworks.com",
+        "bottom_badge": "Apartment Direct · Communities Only",
+        "copyright": "© 2026 SignageWorks · All Rights Reserved"
+      },
+      "blocks": {
+        "col-shop": {
+          "type": "column",
+          "settings": {
+            "heading": "Shop",
+            "links": "Address & Building Signs\nAmenity Signs\nPool Signs\nParking & Traffic Signs\nWayfinding & Directional Signs\nLeasing & Future Resident Signs\nMonument & Entrance Signs\nRules & Property Notice Signs\nMaintenance & Facility Signs"
+          }
+        },
+        "col-account": {
+          "type": "column",
+          "settings": {
+            "heading": "Account",
+            "links": "Apply|id=footer-apply\nLog In|id=footer-login\nOrder Status\nResources"
+          }
+        },
+        "col-company": {
+          "type": "column",
+          "settings": {
+            "heading": "Company",
+            "links": "About SignageWorks\nContact\nFAQ\nTerms\nPrivacy"
+          }
+        }
+      },
+      "block_order": ["col-shop", "col-account", "col-company"]
+    }
+  },
+  "order": ["footer"]
+}
